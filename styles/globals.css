@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.quote-display {
+  position: relative; 
+  text-align: center;
+  padding: 0 20px; 
+}
+
+.quote-display::before {
+  content: '❝'; 
+  font-size: 4em; 
+  color: #a0a0a0; 
+  position: absolute;
+  top: -0.2em;
+  left: -0.5em;
+  opacity: 0.3; 
+  line-height: 1;
+}
+
+.quote-display::after {
+  content: '❞'; 
+  font-size: 4em; 
+  color: #a0a0a0; 
+  position: absolute;
+  bottom: -0.6em;
+  right: -0.5em; 
+  opacity: 0.3;
+  line-height: 1;
+}
+
+
+@media (max-width: 600px) {
+  .quote-display::before,
+  .quote-display::after {
+    font-size: 3em; 
+  }
+}

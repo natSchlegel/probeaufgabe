@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
 
-//api to send data using prisma allowing me to map data objects on the database , first I define them on lib prisma, then I can send/request a specific object/column by using the variable prisma 
+// API to send data to database using Prisma
 export async function POST() {
-  // treatment of exceptions
+  // Handle errors
   try {
     await prisma.visitor.create({});
     return NextResponse.json({ status: "OK" }, { status: 200 });
@@ -16,8 +16,9 @@ export async function POST() {
   }
 }
 
-//api to request data frmo the database / treatment of exceptions
+// API to get data to database using Prisma
 export async function GET() {
+  // Handle errors
   try {
     const count = await prisma.visitor.count();
     return NextResponse.json({ count }, { status: 200 });

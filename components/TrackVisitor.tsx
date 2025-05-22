@@ -1,11 +1,13 @@
-//function called when loading the page responsible for tracking visitor
+// Runs when the page loads to track the visitor
 export async function TrackVisitor() {
-//exceptions treatment
+  // Handle errors
   try {
-    //if prod uses env variable, if not port default 
-  const baseUrl = process.env.URL_VERCEL || 'http://localhost:3000';
-      //this fetch is not client side run because is fetched on the page rendering
+    // Use env URL in production, localhost in development
+    const baseUrl = process.env.URL_VERCEL || 'http://localhost:3000';
+
+    // Send POST request (runs on server during rendering)
     await fetch(`${baseUrl}/api/visitors`, { method: "POST" });
+
     return { success: true };
   } catch (error) {
     console.error("Visitor tracking failed:", error);

@@ -1,23 +1,21 @@
-// this file needs to be run on the client side because handle the user's click to get a new quote without refreshing the page and messing up the footer info
-
+// Runs on client side to handle user clicks without page reload
 'use client';
 
 import { useState } from 'react';
 import { getQuoteData } from '../lib/getQuote';
 
-// makes sure the data has the correct type
+// Type for the props
 interface QuoteElementProps {
   initialQuote: string;
 }
 
 export function QuoteElement({ initialQuote }: QuoteElementProps) {
-
-//useState variables manages fetching, when is loading (waiting for response), error stores any fetch errors and quote is the current quote
+  // State for quote, loading, and error
   const [quote, setQuote] = useState<string>(initialQuote);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // the function  updates the variables above based on success or failure
+  // Get a new quote and update state
   const fetchNewQuote = async () => {
     setLoading(true);
     setError(null);
@@ -38,16 +36,16 @@ export function QuoteElement({ initialQuote }: QuoteElementProps) {
 
   return (
     <div className="space-y-4"> 
-    {/* ternary operator if error = print error on the screen, if not = display quote*/}
+      {/* Show error or quote */}
       {error ? (
         <div className="quote-display text-red-500">Error: {error}</div>
       ) : (
         <div className="quote-display">
-          {/* if loading = show the phrase "loading...", if not loading = print quote fetched*/}
+          {/* Show loading or quote */}
           {loading ? 'Loading new quote...' : quote}
         </div>
       )}
-      {/* button calls funciton above, if loading = button turns disabled and shows "fetching", if not "click here" */}
+      {/* Button to get a new quote */}
       <button
         onClick={fetchNewQuote}
         disabled={loading}

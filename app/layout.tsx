@@ -6,8 +6,8 @@ import '../styles/globals.css'
 const montserrat = Montserrat({ subsets: ['latin'],  weight: ['400', '500', '600'], display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'Probeaufgabe W&S',
-  description: 'By Natascha',
+  title: 'Chuck Norris Quotes',
+  description: 'Project made with Next.js',
 }
 
 export default function RootLayout({

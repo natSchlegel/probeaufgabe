@@ -1,12 +1,19 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../lib/prisma";
+import { createVisitorRecord, getVisitorCount } from "../../../lib/visitor";
 
 // API to send data to database using Prisma
 export async function POST() {
   // Handle errors
   try {
-    await prisma.visitor.create({});
-    return NextResponse.json({ status: "OK" }, { status: 200 });
+    const result = await createVisitorRecord();
+    if (result.success) {
+      return NextResponse.json({ status: "OK" }, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { status: "Error", message: result.error },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error("Error creating visitor:", error);
     return NextResponse.json(
@@ -20,8 +27,15 @@ export async function POST() {
 export async function GET() {
   // Handle errors
   try {
-    const count = await prisma.visitor.count();
-    return NextResponse.json({ count }, { status: 200 });
+    const result = await getVisitorCount();
+    if (result.success) {
+      return NextResponse.json({ count: result.count }, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { status: "Error", message: result.error },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error("Error fetching visitor count:", error);
     return NextResponse.json(

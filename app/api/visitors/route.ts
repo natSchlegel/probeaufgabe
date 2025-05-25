@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
 
+// API to send data to database using Prisma
 export async function POST() {
+  // Handle errors
   try {
     await prisma.visitor.create({});
     return NextResponse.json({ status: "OK" }, { status: 200 });
@@ -14,7 +16,9 @@ export async function POST() {
   }
 }
 
+// API to get data to database using Prisma
 export async function GET() {
+  // Handle errors
   try {
     const count = await prisma.visitor.count();
     return NextResponse.json({ count }, { status: 200 });

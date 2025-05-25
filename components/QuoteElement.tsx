@@ -1,17 +1,21 @@
+// Runs on client side to handle user clicks without page reload
 'use client';
 
 import { useState } from 'react';
 import { getQuoteData } from '../lib/getQuote';
 
-interface QuoteButtonProps {
+// Type for the props
+interface QuoteElementProps {
   initialQuote: string;
 }
 
-export function QuoteButton({ initialQuote }: QuoteButtonProps) {
+export function QuoteElement({ initialQuote }: QuoteElementProps) {
+  // State for quote, loading, and error
   const [quote, setQuote] = useState<string>(initialQuote);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Get a new quote and update state
   const fetchNewQuote = async () => {
     setLoading(true);
     setError(null);
@@ -32,13 +36,16 @@ export function QuoteButton({ initialQuote }: QuoteButtonProps) {
 
   return (
     <div className="space-y-4"> 
+      {/* Show error or quote */}
       {error ? (
         <div className="quote-display text-red-500">Error: {error}</div>
       ) : (
         <div className="quote-display">
+          {/* Show loading or quote */}
           {loading ? 'Loading new quote...' : quote}
         </div>
       )}
+      {/* Button to get a new quote */}
       <button
         onClick={fetchNewQuote}
         disabled={loading}

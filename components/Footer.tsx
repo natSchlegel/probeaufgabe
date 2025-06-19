@@ -7,7 +7,7 @@ const Footer = async () => {
 
   return (
     <footer className='flex items-center text-[#FFFFFF] w-full h-24 sm:h-1/5 justify-center bg-[#403F3F]'>
-      <p>{visitors}</p>
+      <p>Visitors: {visitors}</p>
     </footer>
   )
 }

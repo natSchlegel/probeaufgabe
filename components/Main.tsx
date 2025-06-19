@@ -3,7 +3,6 @@ import Image from 'next/image';
 import ChuckNorrisImage from '../public/chuck-norris.png';
 import Quote from '../components/Quote';
 
-
 const Main = () => {
   return (
     <main className="flex flex-1 h-3/4 sm:flex-none mt-6 sm:mt-0 items-center justify-center">
